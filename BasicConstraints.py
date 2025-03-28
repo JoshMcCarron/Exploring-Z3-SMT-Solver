@@ -5,7 +5,6 @@ def detect_bugs():
     solver = Solver()
 
     # Example 1: Division by zero detection
-    #
     def detect_division_by_zero():
         x = Int('x')
         solver.push()
@@ -18,10 +17,27 @@ def detect_bugs():
             print("✅ No division by zero detected.")
         solver.pop()
 
+    # Example 2: Array out-of-bounds detection
+    def detect_array_oob():
+        arr_size = 10
+        index = Int('index')
+        solver.push()
+        solver.add(index < 0)  # Check negative index
+        if solver.check() == sat:
+            print(f"⚠️ Array out-of-bounds (negative index: {solver.model()[index]})")
+        solver.pop()
+        
+        solver.push()
+        solver.add(index >= arr_size)  # Check index ≥ array size
+        if solver.check() == sat:
+            print(f"⚠️ Array out-of-bounds (index too large: {solver.model()[index]})")
+        solver.pop()
 
+   
 
     # Run all checks
     detect_division_by_zero()
+    detect_array_oob()
 
 
 if __name__ == "__main__":
