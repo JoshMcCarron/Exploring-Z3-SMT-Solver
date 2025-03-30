@@ -59,8 +59,6 @@ for course1 in courses:
             solver.add(Implies(course_slots[course1] == course_slots[course2],
                                 course_rooms[course1] != course_rooms[course2]))
 
-# (Additional constraints such as room limits per course or capacity constraints can be added here.)
-
 # -------------------------------
 # 4. Solve and Display the Schedule
 # -------------------------------
