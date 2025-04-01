@@ -185,3 +185,61 @@ def recursion_analyzer():
 
 if __name__ == "__main__":
     recursion_analyzer()
+
+
+# Expected Output:
+# === Z3 Recursion Analysis ===
+
+# --- Scenario 1: Factorial Recursion ---
+
+# Checking for infinite recursion in factorial...
+# ⚠️ Potential infinite recursion detected!
+#    Function: factorial
+#    Input value: n = 101
+#    Recursion depth: 101
+#    Exceeds maximum allowed depth: 100
+
+# Checking for infinite recursion in factorial...
+# ⚠️ Potential infinite recursion detected!
+#    Function: factorial
+#    Input value: n = -1
+#    Recursion depth: 11
+#    Exceeds maximum allowed depth: 10
+
+# Checking for missing base cases in factorial...
+# ⚠️ Missing base case detected!
+#    Function: factorial
+#    Problematic input: n = -1
+#    This input may not terminate correctly
+
+# Checking for stack overflow risk in factorial...
+# ⚠️ Stack overflow risk detected!
+#    Function: factorial
+#    Input value: n = 1000
+#    Estimated stack frames: 1000
+#    Exceeds typical stack limit: 1000
+
+# --- Scenario 2: Fibonacci Recursion ---
+
+# Checking for exponential call tree growth in fibonacci...
+# ✅ No problematic exponential growth detected
+
+# Checking for infinite recursion in fibonacci...
+# ⚠️ Potential infinite recursion detected!
+#    Function: fibonacci
+#    Input value: n = -1
+#    Recursion depth: 11
+#    Exceeds maximum allowed depth: 10
+
+# --- Scenario 3: Binary Tree Traversal ---
+
+# Checking for stack overflow risk in tree_traversal...
+# ✅ No stack overflow risk detected within limit 1000
+
+# --- Scenario 4: Mutual Recursion ---
+
+# Checking for missing base cases in even_odd_mutual...
+# ⚠️ Missing base case detected!
+#    Function: even_odd_mutual
+#    Problematic input: n = -2
+#    This input may not terminate correctly

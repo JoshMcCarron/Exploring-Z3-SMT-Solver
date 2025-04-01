@@ -183,3 +183,42 @@ def memory_safety_checker():
 
 if __name__ == "__main__":
     memory_safety_checker()
+
+
+# Expected Output:
+# # === Z3 Memory Safety Checker ===
+
+# --- Scenario 1: Memory Allocation ---
+
+# Checking for null pointer dereference...
+# ⚠️ Null pointer dereference detected!
+#    Address: 0
+
+# Checking for use-after-free...
+# ✅ No use-after-free possible
+
+# Checking for buffer overflow...
+# ⚠️ Buffer overflow detected!
+#    Address: 5
+#    Allocated size: 10 bytes
+#    Access size: 15 bytes
+#    Overflow: 5 bytes
+
+# --- Scenario 2: Use-after-free Test ---
+
+# Checking for use-after-free...
+# ✅ No use-after-free possible
+
+# --- Scenario 3: Double Free Test ---
+
+# Checking for double free...
+# ✅ No double free possible
+
+# --- Scenario 4: Symbolic Execution ---
+
+# Checking for buffer overflow...
+# ⚠️ Buffer overflow detected!
+#    Address: 0
+#    Allocated size: 1 bytes
+#    Access size: 2 bytes
+#    Overflow: 1 bytes

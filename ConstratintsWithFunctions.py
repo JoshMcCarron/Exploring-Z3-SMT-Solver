@@ -134,3 +134,20 @@ def analyze_program_with_functions():
 
 if __name__ == "__main__":
     analyze_program_with_functions()
+
+# Expected Output:
+# === Division by Zero Across Functions ===
+# ⚠️ Division by zero in divide(x, y) when y = 0
+# ✅ Safe division example: divide(6, 1) = 6.0
+
+# === Array Bounds in Nested Functions ===
+# ⚠️ Array OOB in get_element(arr, index1) when i = 15
+# Array access result: arr[index1] + arr[index2] (but OOB detected above)
+
+# === Assertion Failure Propagation ===
+# ⚠️ Assertion failed in validate_positive(b) when x = -3
+# Final validation result: And(a > 0, b > 0) (but assertion failed above)
+
+# === Dead Code Detection ===
+# ✅ No dead code in main function branches
+# ⚠️ Dead code detected in nested conditional
