@@ -1,0 +1,73 @@
+﻿Testing & Evaluation
+Overview
+I tested our Z3 tools for two parts:
+* Bug Detection : (from the automated bug detection branch)
+This covers files like BasicConstraints.py, AdvancedMemory.py, AdvancedRecursion.py, and ConstratintsWithFunctions.py.
+
+* Scheduling : (from the automated schedule branch)
+This includes schedule_prof.py and schedule_student.py (Yukun’s work).
+
+I measured how long Z3 takes to catch a bug or generate a schedule and compared these times with how long it takes to do these tasks manually.
+Automated Bug Detection
+Files and What They Do:
+   * BasicConstraints.py:
+        It checks simple bugs like division by zero, array out-of-bounds, assertion errors, and unreachable code.
+
+   * AdvancedMemory.py:
+         It looks for memory issues like null pointer dereferences, use-after-free, buffer overflows, and double free errors.
+
+   * AdvancedRecursion.py:
+         Tests recursion to catch infinite loops, missing base cases, stack overflow risks, and explosive call growth.
+
+   * ConstratintsWithFunctions.py:
+         Finds bugs when functions call other functions – such as division by zero within functions, nested array issues, and unreachable code in function flows.
+
+How I Tested:
+      * I wrapped key Z3 calls with Python’s timer functions (like time.perf_counter()) to record how many milliseconds each check took.
+
+      * For the tougher tests, Z3 mostly finished checks in a few milliseconds up to a couple of seconds.
+
+      * Manually finding these bugs usually takes several minutes per case.
+
+Observations:
+         * Z3 is really fast and consistent.
+
+         * It catches edge cases that manual review might miss.
+
+         * Setting up the constraints takes some work, but it pays off by reducing human error.
+
+Automated Scheduling
+Files and What They Do:
+            * schedule_prof.py:
+ Creates schedules for courses taught by professors. It avoids time conflicts and double-booked rooms.
+
+            * schedule_student.py:
+ Generates all possible valid schedules for students, ensuring no overlapping course times.
+
+How I Tested:
+               * I measured the time taken for Z3 to produce a valid schedule.
+
+               * For a small number of courses (around 7), Z3 found a schedule in under a second.
+
+               * For more courses, it took a few seconds at most.
+
+               * Manual scheduling would take hours and is more error-prone.
+
+Observations:
+                  * Z3 provides a reliable schedule quickly.
+
+                  * It scales well even as more courses and constraints are added.
+
+                  * The automated approach is much faster than manual scheduling.
+
+Final Thoughts
+                     * Speed:
+ Z3 checks run in milliseconds to a few seconds. Manual debugging and scheduling take much longer.
+
+                     * Accuracy:
+ Automated methods catch bugs and scheduling conflicts that manual methods might miss.
+
+                     * Efficiency:
+ Although setting up constraints needs extra work, the overall time saved and error reduction are significant.
+
+Overall, using Z3 for both bug detection and scheduling looks promising. It’s fast, consistent, and can handle edge cases better than manual methods.
