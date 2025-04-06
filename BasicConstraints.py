@@ -63,3 +63,10 @@ def detect_bugs():
 
 if __name__ == "__main__":
     detect_bugs()
+
+# Expected output:
+# ⚠️ Division by zero possible! (x = 0)
+# ⚠️ Array out-of-bounds (negative index: -1)
+# ⚠️ Array out-of-bounds (index too large: 10)
+# ⚠️ Assertion failure detected!
+# ⚠️ Dead code detected (unreachable condition).
